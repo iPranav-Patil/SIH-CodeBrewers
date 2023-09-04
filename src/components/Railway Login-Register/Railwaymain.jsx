@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import "./Railwaylogin.css";
-import SignInForm from "./SignIN";
-import SignUpForm from "./SignUp";
+import "./Railwaymain.css";
+import SignInForm from "./RailwaySignIncomponent"; 
+import SignUpForm from "./RailwaySignUpcomponent";
+import { useNavigate } from "react-router-dom";
 
-export default function Railwaylogin() {
+
+export default function Railwaymain() {
+  const navigate = useNavigate();
   const [type, setType] = useState("signIn");
   const handleOnClick = text => {
     if (text !== type) {
@@ -15,30 +18,29 @@ export default function Railwaylogin() {
     "container " + (type === "signUp" ? "right-panel-active" : "");
   return (
     <div className="Main">
+            <div className="backbtn"><img src={backbtn} onClick={()=>{navigate("/")}}/></div>
       <div className={containerClass} id="container">
         <SignUpForm />
         <SignInForm />
         <div className="overlay-container">
           <div className="overlay">
             <div className="overlay-panel overlay-left">
-              <h1>Welcome Back!</h1>
-              <p>
+              <h1 className='heading1'>Welcome Back!</h1>
+              <p className='para'>
                 To keep connected with us please login with your personal info
               </p>
-              <button
+              <button id='bttn'
                 className="ghost"
-                id="signIn"
                 onClick={() => handleOnClick("signIn")}
               >
                 Sign In
               </button>
             </div>
             <div className="overlay-panel overlay-right">
-              <h1>Hello, Friend!</h1>
-              <p>Enter your personal details and start journey with us</p>
-              <button
+              <h1 className='heading1'>Hello, Friend!</h1>
+              <p className='para'>Enter your personal details and start journey with us</p>
+              <button id='bttn'
                 className="ghost "
-                id="signUp"
                 onClick={() => handleOnClick("signUp")}
               >
                 Sign Up

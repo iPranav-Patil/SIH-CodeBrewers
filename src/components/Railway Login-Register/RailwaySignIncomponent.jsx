@@ -1,6 +1,6 @@
 import React from "react";
 
-function SignInForm() {
+function RailwaySignIncomponent() {
   const [state, setState] = React.useState({
     email: "",
     password: ""
@@ -29,9 +29,9 @@ function SignInForm() {
 
   return (
     <div className="form-container sign-in-container">
-      <form onSubmit={handleOnSubmit}>
-        <h1>Sign in</h1>
-        <input
+      <form className='frm' onSubmit={handleOnSubmit}>
+        <h1 className='heading1'>Railway Sign in</h1>
+        <input id='inpt'
           type="email"
           placeholder="Email"
           name="email"
@@ -39,18 +39,18 @@ function SignInForm() {
           onChange={handleChange}
           style={{borderRadius:'10px'}}
         />
-        <input
+        <input id='inpt'
           type="password"
           name="password"
           placeholder="Password"
           value={state.password}
           onChange={handleChange}
         />
-        <a href="#">Forgot your password?</a>
-        <button style={{boxShadow:'1px 2px 10px 1px #222'}}>Sign In</button>
+        <a className='alink' href="#">Forgot your password?</a>
+        <button id='bttn' style={{boxShadow:'1px 2px 10px 1px #222'}}>Sign In</button>
       </form>
     </div>
   );
 }
 
-export default SignInForm;
+export default RailwaySignIncomponent;
