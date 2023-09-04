@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import "./Companymain.css";
 import hidepasswd from "../../assets/show-password.png";
 import showpasswd from "../../assets/hide-password.png";
-import './CSRF.js';
+import getCookie from './CSRF.js';
 
 
-async function CompanySignUpcomponent() {
+function CompanySignUpcomponent() {
   const [passwordMatch, setPasswordMatch] = useState(true);
   const [passwordMessage, setPasswordMessage] = useState("");
   const [timerId, setTimerId] = useState(null);
@@ -29,8 +29,9 @@ async function CompanySignUpcomponent() {
     companyProof: null,
   });
 
-  const handleOnSubmit = (evt) => {
+  const handleOnSubmit = async (evt) => {
     evt.preventDefault();
+    const csrftoken = getCookie("csrftoken");
 
     const {
       operatorname,
@@ -45,31 +46,32 @@ async function CompanySignUpcomponent() {
     alert(
       `You are signed up with name: ${operatorname} email: ${email} and password: ${password}`
     );
+    let formData = new FormData();
+    // formData.append("aadhaar", aadharCard, aadharCard.name);
+    // formData.append("id_proof", companyProof, companyProof.name);
+    formData.append("operator_name", operatorname);
+    formData.append("company_name", companyName);
+    formData.append("emp_position", positionAtCompany);
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("type", "Company");
+  
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/register/", {
+        credentials: "include",
+        method: "POST",
+        headers: {
+          "X-CSRFToken": csrftoken,
+        },
+        body: formData,
+      });
+      const data = await response.json();
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  
   };
-  let formData = new FormData();
-  formData.append("aadhaar", aadharCard, aadharCard.name);
-  formData.append("id_proof", companyProof, companyProof.name);
-  formData.append("operator_name", operatorname);
-  formData.append("company_name", companyName);
-  formData.append("emp_position", positionAtCompany);
-  formData.append("email", email);
-  formData.append("password", password);
-  formData.append("type", "Company");
-
-  try {
-    const response = await fetch("http://127.0.0.1:8000/api/register/", {
-      credentials: "include",
-      method: "POST",
-      headers: {
-        "X-CSRFToken": csrftoken,
-      },
-      body: formData,
-    });
-    const data = await response.json();
-    console.log(data);
-  } catch (err) {
-    console.log(err);
-  }
 
   const checkPassword = () => {
     const { password, conpassword } = state;

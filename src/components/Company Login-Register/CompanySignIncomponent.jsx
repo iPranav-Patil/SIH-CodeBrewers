@@ -1,5 +1,5 @@
 import React from "react";
-import './CSRF.js';
+import getCookie from "./CSRF";
 
 function CompanySignIncomponent() {
   const [state, setState] = React.useState({
