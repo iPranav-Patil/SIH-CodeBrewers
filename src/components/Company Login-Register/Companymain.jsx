@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Companymain.css";
-import SignInForm from "./CompanySignIncomponent";
-import SignUpForm from "./CompanySignUpcomponent";
+import CompanySignUpcomponent from "./CompanySignUpcomponent";
+import CompanySignIncomponent from "./CompanySignIncomponent";
 import backbtn from '../../assets/back-btn.png'
 import { useNavigate } from "react-router-dom";
 
@@ -21,8 +21,8 @@ export default function Companymain() {
     <div className="Main">
       <div className="backbtn"><img src={backbtn} onClick={()=>{navigate("/")}}/></div>
       <div className={containerClass} id="container">
-        <SignUpForm />
-        <SignInForm />
+        <CompanySignUpcomponent /> 
+        <CompanySignIncomponent />
         <div className="overlay-container">
           <div className="overlay">
             <div className="overlay-panel overlay-left">
