@@ -11,13 +11,13 @@ export async function loadRailwayData() {
   // if (!Array.isArray(trainsData)) {
   //   throw new Error('Stations data is not an array');
   // }
-  const schedulesResponse = await import('../Map API/schedules.json');
-  const schedulesData = schedulesResponse.default;
-  if (!Array.isArray(schedulesData)) {
-    throw new Error('Stations data is not an array');
-  }
+  // const schedulesResponse = await import('../Map API/schedules.json');
+  // const schedulesData = schedulesResponse.default;
+  // if (!Array.isArray(schedulesData)) {
+  //   throw new Error('Stations data is not an array');
+  // }
 
 
 
-  return { stations: stationsData, trains: trainsData, schedules: schedulesData };
+  return { stations: stationsData, trains: trainsData };
 }
