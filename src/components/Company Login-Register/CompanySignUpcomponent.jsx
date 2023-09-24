@@ -91,10 +91,9 @@ function CompanySignUpcomponent() {
     }
   };
 
-  // UseEffect to continuously check password after a delay
   useEffect(() => {
     if (state.page === 3) {
-      const intervalId = setInterval(checkPassword, 1000);
+      const intervalId = setInterval(checkPassword, 10000);
 
       return () => {
         clearInterval(intervalId);
@@ -146,58 +145,58 @@ function CompanySignUpcomponent() {
 
   const initialpage = (
     <>
-      <div className="page1">
-        <h2 className='heading2'>Register Your Company</h2>
-        <input id='inpt'
+      <div className="cpage1">
+        <h2 className='cheading2'>Register Your Company</h2>
+        <input id='cinpt'
           type="text"
           name="operatorname"
           value={state.operatorname}
           onChange={handleChange}
           placeholder="Operator Name"
         />
-        <input id='inpt'
+        <input id='cinpt'
           type="text"
           name="companyName"
           value={state.companyName}
           onChange={handleChange}
           placeholder="Company Name"
         />
-        <input id='inpt'
+        <input id='cinpt'
           type="text"
           name="positionAtCompany"
           value={state.positionAtCompany}
           onChange={handleChange}
           placeholder="Position At Company"
         />
-        <input id='inpt'
+        <input id='cinpt'
           type="email"
           name="email"
           value={state.email}
           onChange={handleChange}
           placeholder="Company Email"
         />
-        <input id='inpt'
+        <input id='cinpt'
           type="text"
           name="operatorContact"
           value={state.operatorContact}
           onChange={handleChange}
           placeholder="operator contact no"
         />
-        <input id='inpt'
+        <input id='cinpt'
           type="text"
           name="companyContact"
           value={state.companyContact}
           onChange={handleChange}
           placeholder="company contact no"
         />
-        <input id='inpt'
+        <input id='cinpt'
           type="text"
           name="address"
           value={state.address}
           onChange={handleChange}
           placeholder="Company Address"
         />
-        <button id='bttn'
+        <button id='cbttn'
           style={{ boxShadow: "0px 0px 10px 0px #222", marginTop: "5px" }}
           className="nextbtn1"
           onClick={handleNext}
@@ -219,10 +218,10 @@ function CompanySignUpcomponent() {
         return (
           <>
             <div className="page2">
-              <h2 className='heading2'>Register Your Company</h2>
+              <h2 className='cheading2'>Register Your Company</h2>
               <div className="form-group">
                 <label style={{ paddingTop: "10px" }}>Aadhar Card :</label>
-                <input id='inpt'
+                <input id='cinpt'
                   type="file"
                   accept=".pdf"
                   name="aadharCard"
@@ -232,7 +231,7 @@ function CompanySignUpcomponent() {
               </div>
               <div className="form-group">
                 <label>Incorporation Certificate:</label>
-                <input id='inpt'
+                <input id='cinpt'
                   type="file"
                   accept=".pdf"
                   name="companyProof"
@@ -241,14 +240,14 @@ function CompanySignUpcomponent() {
                 />
               </div>
               <div className="navbtns">
-                <button id='bttn'
+                <button id='cbttn'
                   style={{ boxShadow: "0px 0px 10px 0px #222" }}
                   className="backbtn1"
                   onClick={handleBack}
                 >
                   Back
                 </button>
-                <button id='bttn'
+                <button id='cbttn'
                   style={{ boxShadow: "0px 0px 10px 0px #222" }}
                   className="nextbtn2"
                   onClick={handleNext}
@@ -264,9 +263,9 @@ function CompanySignUpcomponent() {
         return (
           <>
             <div className="page3">
-              <h2 className='heading2'>Register Your Company</h2>
+              <h2 className='cheading2'>Register Your Company</h2>
               <div className="input-container">
-                <input id='inpt'
+                <input id='cinpt'
                   type={showPassword ? "text" : "password"}
                   name="password"
                   className="input-password"
@@ -283,7 +282,7 @@ function CompanySignUpcomponent() {
                 />
               </div>
               <div className="input-container">
-                <input id='inpt'
+                <input id='cinpt'
                   type={showPassword1 ? "text" : "password"}
                   name="conpassword"
                   className="input-password"
@@ -313,14 +312,14 @@ function CompanySignUpcomponent() {
                 </h5>
               )}
               <div className="navbtns" style={{ marginTop: "10px" }}>
-                <button id='bttn'
+                <button id='cbttn'
                   style={{ boxShadow: "0px 0px 10px 0px #222" }}
                   className="backbtn1"
                   onClick={handleBack}
                 >
                   Back
                 </button>
-                <button id='bttn'
+                <button id='cbttn'
                   style={{ boxShadow: "1px 2px 10px 1px #222" }}
                   onClick={handleOnSubmit}
                 >
