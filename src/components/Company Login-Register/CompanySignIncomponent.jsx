@@ -1,5 +1,6 @@
 import React from "react";
 import getCookie from "./CSRF";
+import { Navigate } from "react-router-dom";
 
 function CompanySignIncomponent() {
   const [state, setState] = React.useState({
@@ -21,6 +22,7 @@ function CompanySignIncomponent() {
 
     const { email, password } = state;
     alert(`You are login with email: ${email} and password: ${password}`);
+    Navigate("/cdash");
 
     try {
       const response = await fetch("http://127.0.0.1:8000/api/login/", {
