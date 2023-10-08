@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Companymain.css";
 import hidepasswd from "../../assets/show-password.png";
 import showpasswd from "../../assets/hide-password.png";
-import getCookie from './CSRF.js';
-
+import getCookie from "./CSRF.js";
 
 function CompanySignUpcomponent() {
   const [passwordMatch, setPasswordMatch] = useState(true);
@@ -31,7 +30,7 @@ function CompanySignUpcomponent() {
 
   const handleOnSubmit = async (evt) => {
     evt.preventDefault();
-    const csrftoken = getCookie("csrftoken");
+    const csrftoken1 = getCookie("csrftoken");
 
     const {
       operatorname,
@@ -39,38 +38,58 @@ function CompanySignUpcomponent() {
       email,
       password,
       conpassword,
+      operatorContact,
+      companyContact,
       positionAtCompany,
-      age,
-      aadharCard,
+      address,
     } = state;
-    alert(
-      `You are signed up with name: ${operatorname} email: ${email} and password: ${password}`
-    );
+
+    const { aadharCard, companyProof } = fileInputs;
+
     let formData = new FormData();
-    // formData.append("aadhaar", aadharCard, aadharCard.name);
-    // formData.append("id_proof", companyProof, companyProof.name);
+    formData.append("aadhaar", aadharCard, aadharCard.name);
+    formData.append("corporation_proof", companyProof, companyProof.name);
     formData.append("operator_name", operatorname);
     formData.append("company_name", companyName);
     formData.append("emp_position", positionAtCompany);
-    formData.append("email", email);
-    formData.append("password", password);
-    formData.append("type", "Company");
-  
+    formData.append("contact_no", operatorContact);
+    formData.append("org_contact_no", companyContact);
+    formData.append("address", address);
+
     try {
       const response = await fetch("http://127.0.0.1:8000/api/register/", {
         credentials: "include",
         method: "POST",
         headers: {
-          "X-CSRFToken": csrftoken,
+          "X-CSRFToken": csrftoken1,
+          "Content-Type": "application/json",
         },
-        body: formData,
+        body: JSON.stringify({
+          email: email,
+          password: password,
+          type: "company",
+        }),
       });
       const data = await response.json();
       console.log(data);
+
+      const csrftoken2 = getCookie("csrftoken");
+      formData.append("user", data.id);
+
+      const response2 = await fetch(
+        "http://127.0.0.1:8000/api/register-company/",
+        {
+          credentials: "include",
+          method: "POST",
+          headers: {
+            "X-CSRFToken": csrftoken2,
+          },
+          body: formData,
+        }
+      );
     } catch (err) {
       console.log(err);
     }
-  
   };
 
   const checkPassword = () => {
@@ -91,9 +110,10 @@ function CompanySignUpcomponent() {
     }
   };
 
+  // UseEffect to continuously check password after a delay
   useEffect(() => {
     if (state.page === 3) {
-      const intervalId = setInterval(checkPassword, 10000);
+      const intervalId = setInterval(checkPassword, 1000);
 
       return () => {
         clearInterval(intervalId);
@@ -145,58 +165,66 @@ function CompanySignUpcomponent() {
 
   const initialpage = (
     <>
-      <div className="cpage1">
-        <h2 className='cheading2'>Register Your Company</h2>
-        <input id='cinpt'
+      <div className="page1">
+        <h2 className="heading2">Register Your Company</h2>
+        <input
+          id="inpt"
           type="text"
           name="operatorname"
           value={state.operatorname}
           onChange={handleChange}
           placeholder="Operator Name"
         />
-        <input id='cinpt'
+        <input
+          id="inpt"
           type="text"
           name="companyName"
           value={state.companyName}
           onChange={handleChange}
           placeholder="Company Name"
         />
-        <input id='cinpt'
+        <input
+          id="inpt"
           type="text"
           name="positionAtCompany"
           value={state.positionAtCompany}
           onChange={handleChange}
           placeholder="Position At Company"
         />
-        <input id='cinpt'
+        <input
+          id="inpt"
           type="email"
           name="email"
           value={state.email}
           onChange={handleChange}
           placeholder="Company Email"
         />
-        <input id='cinpt'
+        <input
+          id="inpt"
           type="text"
           name="operatorContact"
           value={state.operatorContact}
           onChange={handleChange}
           placeholder="operator contact no"
         />
-        <input id='cinpt'
+        <input
+          id="inpt"
           type="text"
           name="companyContact"
           value={state.companyContact}
           onChange={handleChange}
           placeholder="company contact no"
         />
-        <input id='cinpt'
+        <input
+          id="inpt"
           type="text"
           name="address"
           value={state.address}
           onChange={handleChange}
           placeholder="Company Address"
         />
-        <button id='cbttn'
+        <button
+          id="bttn"
           style={{ boxShadow: "0px 0px 10px 0px #222", marginTop: "5px" }}
           className="nextbtn1"
           onClick={handleNext}
@@ -218,10 +246,11 @@ function CompanySignUpcomponent() {
         return (
           <>
             <div className="page2">
-              <h2 className='cheading2'>Register Your Company</h2>
+              <h2 className="heading2">Register Your Company</h2>
               <div className="form-group">
                 <label style={{ paddingTop: "10px" }}>Aadhar Card :</label>
-                <input id='cinpt'
+                <input
+                  id="inpt"
                   type="file"
                   accept=".pdf"
                   name="aadharCard"
@@ -231,7 +260,8 @@ function CompanySignUpcomponent() {
               </div>
               <div className="form-group">
                 <label>Incorporation Certificate:</label>
-                <input id='cinpt'
+                <input
+                  id="inpt"
                   type="file"
                   accept=".pdf"
                   name="companyProof"
@@ -240,14 +270,16 @@ function CompanySignUpcomponent() {
                 />
               </div>
               <div className="navbtns">
-                <button id='cbttn'
+                <button
+                  id="bttn"
                   style={{ boxShadow: "0px 0px 10px 0px #222" }}
                   className="backbtn1"
                   onClick={handleBack}
                 >
                   Back
                 </button>
-                <button id='cbttn'
+                <button
+                  id="bttn"
                   style={{ boxShadow: "0px 0px 10px 0px #222" }}
                   className="nextbtn2"
                   onClick={handleNext}
@@ -263,9 +295,10 @@ function CompanySignUpcomponent() {
         return (
           <>
             <div className="page3">
-              <h2 className='cheading2'>Register Your Company</h2>
+              <h2 className="heading2">Register Your Company</h2>
               <div className="input-container">
-                <input id='cinpt'
+                <input
+                  id="inpt"
                   type={showPassword ? "text" : "password"}
                   name="password"
                   className="input-password"
@@ -282,7 +315,8 @@ function CompanySignUpcomponent() {
                 />
               </div>
               <div className="input-container">
-                <input id='cinpt'
+                <input
+                  id="inpt"
                   type={showPassword1 ? "text" : "password"}
                   name="conpassword"
                   className="input-password"
@@ -312,14 +346,16 @@ function CompanySignUpcomponent() {
                 </h5>
               )}
               <div className="navbtns" style={{ marginTop: "10px" }}>
-                <button id='cbttn'
+                <button
+                  id="bttn"
                   style={{ boxShadow: "0px 0px 10px 0px #222" }}
                   className="backbtn1"
                   onClick={handleBack}
                 >
                   Back
                 </button>
-                <button id='cbttn'
+                <button
+                  id="bttn"
                   style={{ boxShadow: "1px 2px 10px 1px #222" }}
                   onClick={handleOnSubmit}
                 >
@@ -337,13 +373,14 @@ function CompanySignUpcomponent() {
 
   return (
     <>
-    <div className="form-container sign-up-container">
-      <form className='frm'>
-        <div>{renderFields()}</div>
-      </form>
-    </div>
+      <div className="form-container sign-up-container">
+        <form className="frm">
+          <div>{renderFields()}</div>
+        </form>
+      </div>
     </>
   );
 }
 
 export default CompanySignUpcomponent;
+
