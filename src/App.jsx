@@ -3,10 +3,10 @@ import Railwaymain from "./components/Railway Login-Register/Railwaymain";
 import Map from "./components/Map";
 import Landing from "./components/Landing Page/Landing";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Landing from './components/Landing Page/Landing'
-// import MapComponent from './components/Map API/Mapper'
+import MapComponent from './components/Map API/Mapper'
 // import Rakeanimation from './components/Visualizer/Rakeanimation'
 import CompanyDashboard from './components/Dashboard/companyDashboard'
+import RailwayDashboard from "./components/Dashboard/railwayDashboard";
 
 function App() {
   return (
@@ -17,9 +17,11 @@ function App() {
       <Route path='/companymain' element={<Companymain />}></Route>
       <Route path='/railwaymain' element={<Railwaymain />}></Route>
       <Route path="/map" element={<Map />}></Route>
-      {/* <Route path='/map' element={<MapComponent />}></Route> */}
+      <Route path='/rmap' element={<MapComponent />}></Route>
       {/* <Route path='/rake' element={<Rakeanimation />}></Route> */}
       <Route path='/cdash' element={<CompanyDashboard />}></Route> 
+      <Route path='/rdash' element={<RailwayDashboard />}></Route> 
+
     </Routes>
     </BrowserRouter>
     </>

@@ -14,6 +14,9 @@ export default function Landing() {
             <div className="logo">
               <h2>Code Brewers</h2>
             </div>
+            <div >
+              <button onClick={()=>{navigate('/rmap')}} className="map-btn">Indian Railway Map</button>
+            </div>
             <div className="btn-container" style={{ gap: "10px" }}>
               <button
                 className="login-btn"

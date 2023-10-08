@@ -135,7 +135,7 @@ function CompanySignUpcomponent() {
     if (state.page === 3) {
       var newTimerId = setTimeout(() => {
         checkPassword(); // Check password after a delay
-      }, 1000);
+      }, 3000);
 
       setTimerId(newTimerId);
     }
@@ -165,10 +165,10 @@ function CompanySignUpcomponent() {
 
   const initialpage = (
     <>
-      <div className="page1">
-        <h2 className="heading2">Register Your Company</h2>
+      <div className="cpage1">
+        <h2 className="cheading2">Register Your Company</h2>
         <input
-          id="inpt"
+          id="cinpt"
           type="text"
           name="operatorname"
           value={state.operatorname}
@@ -176,7 +176,7 @@ function CompanySignUpcomponent() {
           placeholder="Operator Name"
         />
         <input
-          id="inpt"
+          id="cinpt"
           type="text"
           name="companyName"
           value={state.companyName}
@@ -184,7 +184,7 @@ function CompanySignUpcomponent() {
           placeholder="Company Name"
         />
         <input
-          id="inpt"
+          id="cinpt"
           type="text"
           name="positionAtCompany"
           value={state.positionAtCompany}
@@ -192,7 +192,7 @@ function CompanySignUpcomponent() {
           placeholder="Position At Company"
         />
         <input
-          id="inpt"
+          id="cinpt"
           type="email"
           name="email"
           value={state.email}
@@ -200,7 +200,7 @@ function CompanySignUpcomponent() {
           placeholder="Company Email"
         />
         <input
-          id="inpt"
+          id="cinpt"
           type="text"
           name="operatorContact"
           value={state.operatorContact}
@@ -208,7 +208,7 @@ function CompanySignUpcomponent() {
           placeholder="operator contact no"
         />
         <input
-          id="inpt"
+          id="cinpt"
           type="text"
           name="companyContact"
           value={state.companyContact}
@@ -216,7 +216,7 @@ function CompanySignUpcomponent() {
           placeholder="company contact no"
         />
         <input
-          id="inpt"
+          id="cinpt"
           type="text"
           name="address"
           value={state.address}
@@ -224,7 +224,7 @@ function CompanySignUpcomponent() {
           placeholder="Company Address"
         />
         <button
-          id="bttn"
+          id="cbttn"
           style={{ boxShadow: "0px 0px 10px 0px #222", marginTop: "5px" }}
           className="nextbtn1"
           onClick={handleNext}
@@ -245,12 +245,12 @@ function CompanySignUpcomponent() {
       case 2:
         return (
           <>
-            <div className="page2">
-              <h2 className="heading2">Register Your Company</h2>
+            <div className="cpage2">
+              <h2 className="cheading2">Register Your Company</h2>
               <div className="form-group">
                 <label style={{ paddingTop: "10px" }}>Aadhar Card :</label>
                 <input
-                  id="inpt"
+                  id="cinpt"
                   type="file"
                   accept=".pdf"
                   name="aadharCard"
@@ -261,7 +261,7 @@ function CompanySignUpcomponent() {
               <div className="form-group">
                 <label>Incorporation Certificate:</label>
                 <input
-                  id="inpt"
+                  id="cinpt"
                   type="file"
                   accept=".pdf"
                   name="companyProof"
@@ -271,7 +271,7 @@ function CompanySignUpcomponent() {
               </div>
               <div className="navbtns">
                 <button
-                  id="bttn"
+                  id="cbttn"
                   style={{ boxShadow: "0px 0px 10px 0px #222" }}
                   className="backbtn1"
                   onClick={handleBack}
@@ -279,7 +279,7 @@ function CompanySignUpcomponent() {
                   Back
                 </button>
                 <button
-                  id="bttn"
+                  id="cbttn"
                   style={{ boxShadow: "0px 0px 10px 0px #222" }}
                   className="nextbtn2"
                   onClick={handleNext}
@@ -295,10 +295,10 @@ function CompanySignUpcomponent() {
         return (
           <>
             <div className="page3">
-              <h2 className="heading2">Register Your Company</h2>
+              <h2 className="cheading2">Register Your Company</h2>
               <div className="input-container">
                 <input
-                  id="inpt"
+                  id="cinpt"
                   type={showPassword ? "text" : "password"}
                   name="password"
                   className="input-password"
@@ -316,7 +316,7 @@ function CompanySignUpcomponent() {
               </div>
               <div className="input-container">
                 <input
-                  id="inpt"
+                  id="cinpt"
                   type={showPassword1 ? "text" : "password"}
                   name="conpassword"
                   className="input-password"
@@ -347,7 +347,7 @@ function CompanySignUpcomponent() {
               )}
               <div className="navbtns" style={{ marginTop: "10px" }}>
                 <button
-                  id="bttn"
+                  id="cbttn"
                   style={{ boxShadow: "0px 0px 10px 0px #222" }}
                   className="backbtn1"
                   onClick={handleBack}
@@ -355,7 +355,7 @@ function CompanySignUpcomponent() {
                   Back
                 </button>
                 <button
-                  id="bttn"
+                  id="cbttn"
                   style={{ boxShadow: "1px 2px 10px 1px #222" }}
                   onClick={handleOnSubmit}
                 >

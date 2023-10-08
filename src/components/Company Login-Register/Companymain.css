@@ -39,7 +39,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
- 
 
   }
   .cpage3{
@@ -52,7 +51,7 @@
     align-items: center;
     gap: 5px;
     margin-bottom: 10px;
-    width: calc(100vh - 140%);
+    width: calc(100vh - 200%);
   }
 
   .form-group label {

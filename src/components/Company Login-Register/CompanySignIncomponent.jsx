@@ -23,7 +23,7 @@ function CompanySignIncomponent() {
     const csrftoken = getCookie("csrftoken");
 
     const { email, password } = state;
-    alert(`You are login with email: ${email} and password: ${password}`);
+    // alert(`You are login with email: ${email} and password: ${password}`);
 
     try {
       const response = await fetch("http://127.0.0.1:8000/api/login/", {
@@ -38,7 +38,7 @@ function CompanySignIncomponent() {
 
       const data = await response.json();
       console.log(data);
-      navigate("/");
+      navigate("/cdash");
     } catch (err) {
       console.error(err);
     }
@@ -75,7 +75,7 @@ function CompanySignIncomponent() {
         <a className="alink" href="#">
           Forgot your password?
         </a>
-        <button id="bttn" style={{ boxShadow: "1px 2px 10px 1px #222" }}>
+        <button id="bttn" onClick={()=>{handleOnSubmit}} style={{ boxShadow: "1px 2px 10px 1px #222" }}>
           Sign In
         </button>
       </form>

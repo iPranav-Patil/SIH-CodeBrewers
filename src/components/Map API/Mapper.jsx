@@ -16,13 +16,13 @@ function MapComponent() {
   }, []);
 
   return (
-    <div className="map" style={{margin:'100px 0 0 200px',width:'1200px',height:'600px'}}>
+    <div className="mapp" style={{margin:'100px 0 0 200px',width:'1300px',height:'60vh'}}>
       <link
         rel="stylesheet"
         href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
       />
 
-      <RailwayMap
+      <RailwayMap 
         stations={data.stations}
         trains={data.trains}
         schedules={data.schedules}

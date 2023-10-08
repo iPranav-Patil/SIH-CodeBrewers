@@ -52,11 +52,11 @@
     margin: 15px 0;
   }
   .page1{
-    margin-top: 90%;
-    height:90vh;
+    height: 100%;
+ 
   }
   .page1 input{
-    height: 6%;
+    height: 10%;
   }
   .page2{
     display: flex;
@@ -70,13 +70,6 @@
     
   }
 
-  .form-group {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    margin-bottom: 10px;
-    width: calc(100vh - 140%);
-  }
 
   .form-group label {
     width: 100%;
