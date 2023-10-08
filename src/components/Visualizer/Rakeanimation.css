@@ -74,9 +74,9 @@ svg {
 .new-edge {
   stroke: #0f0; /* Green color for newly added edges */
 }
-/* Style for the error message */
+
 .error-message {
-  color: #f00; /* Red color for error message */
+  color: #f00; 
   margin-top: 10px;
   font-weight: bold;
   font-size: 14px;
