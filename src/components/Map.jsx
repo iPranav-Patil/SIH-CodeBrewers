@@ -7,9 +7,48 @@ import "leaflet/dist/leaflet.css";
 import "./map.css";
 
 const Map = (props) => {
-  const [coords, setCoords] = useState([51.505, -0.09]);
-  const [location, setLocation] = useState("London");
-  const [data, setData] = useState({});
+  const [rakes, setRakes] = useState([]);
+  const [sources, setSources] = useState([]);
+  const [consumers, setConsumers] = useState([]);
+
+  const getRakes = async () => {
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/get-rakes/", {
+        credentials: "include",
+      });
+      const data = await response.json();
+      console.log(data[0].location.split(",")[0]);
+      setRakes(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getSources = async () => {
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/get-sources/", {
+        credentials: "include",
+      });
+      const data = await response.json();
+      console.log(data[0].location.split(",")[0]);
+      setSources(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getConsumers = async () => {
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/get-consumers/", {
+        credentials: "include",
+      });
+      const data = await response.json();
+      console.log(data[0].location.split(",")[0]);
+      setConsumers(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const getData = async () => {
     try {
@@ -26,55 +65,61 @@ const Map = (props) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      getData();
+      getRakes();
+      getSources();
+      getConsumers();
     }, 1000);
     return () => clearInterval(interval);
   }, []);
   return (
-    <div
-      onClick={() => {
-        setLocation("Mumbai");
-        setCoords([coords[0] + 1, coords[1] + 1]);
-      }}
-    >
-      <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={true}>
+    <div>
+      <MapContainer center={[20.5937, 78.9629]} zoom={5} scrollWheelZoom={true}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {data?.rakes &&
-          data.rakes.map((rake) => {
+        {rakes &&
+          rakes.map((rake) => {
+            const coordsRake = rake.location.split(",");
             return (
-              <Marker position={rake.location} icon={RakeMarker}>
+              <Marker
+                key={`rake-${rake.id}`}
+                position={[Number(coordsRake[0]), Number(coordsRake[1])]}
+                icon={RakeMarker}
+              >
                 <Popup>{rake.id}</Popup>
               </Marker>
             );
           })}
-        {data?.sources &&
-          data.sources.map((source) => {
+        {sources &&
+          sources.map((source) => {
+            const coordsSource = source.location.split(",");
             return (
-              <Marker position={source.location} icon={SourceMarker}>
+              <Marker
+                key={`source-${source.id}`}
+                position={[Number(coordsSource[0]), Number(coordsSource[1])]}
+                icon={SourceMarker}
+              >
                 <Popup>{source.id}</Popup>
               </Marker>
             );
           })}
-        {data?.consumers &&
-          data.consumers.map((consumer) => {
+        {consumers &&
+          consumers.map((consumer) => {
+            const coordsConsumer = consumer.location.split(",");
             return (
-              <Marker position={consumer.location} icon={ConsumerMarker}>
+              <Marker
+                key={`consumer-${consumer.id}`}
+                position={[
+                  Number(coordsConsumer[0]),
+                  Number(coordsConsumer[1]),
+                ]}
+                icon={ConsumerMarker}
+              >
                 <Popup>{consumer.id}</Popup>
               </Marker>
             );
           })}
-        {/* <Marker position={[52.52, 13.405]}>
-          <Popup>111</Popup>
-        </Marker>
-        <Marker position={[52.53, 13.415]}>
-          <Popup>222</Popup>
-        </Marker>
-        <Marker position={[52.52768294899051, 13.412682948990506]}>
-          <Popup>333</Popup>
-        </Marker> */}
       </MapContainer>
     </div>
   );

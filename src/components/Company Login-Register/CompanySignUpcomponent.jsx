@@ -30,7 +30,7 @@ function CompanySignUpcomponent() {
 
   const handleOnSubmit = async (evt) => {
     evt.preventDefault();
-    const csrftoken = getCookie("csrftoken");
+    const csrftoken1 = getCookie("csrftoken");
 
     const {
       operatorname,
@@ -48,28 +48,45 @@ function CompanySignUpcomponent() {
 
     let formData = new FormData();
     formData.append("aadhaar", aadharCard, aadharCard.name);
-    formData.append("id_proof", companyProof, companyProof.name);
+    formData.append("corporation_proof", companyProof, companyProof.name);
     formData.append("operator_name", operatorname);
     formData.append("company_name", companyName);
     formData.append("emp_position", positionAtCompany);
-    formData.append("email", email);
-    formData.append("password", password);
     formData.append("contact_no", operatorContact);
     formData.append("org_contact_no", companyContact);
     formData.append("address", address);
-    formData.append("type", "Company");
 
     try {
       const response = await fetch("http://127.0.0.1:8000/api/register/", {
         credentials: "include",
         method: "POST",
         headers: {
-          "X-CSRFToken": csrftoken,
+          "X-CSRFToken": csrftoken1,
+          "Content-Type": "application/json",
         },
-        body: formData,
+        body: JSON.stringify({
+          email: email,
+          password: password,
+          type: "company",
+        }),
       });
       const data = await response.json();
       console.log(data);
+
+      const csrftoken2 = getCookie("csrftoken");
+      formData.append("user", data.id);
+
+      const response2 = await fetch(
+        "http://127.0.0.1:8000/api/register-company/",
+        {
+          credentials: "include",
+          method: "POST",
+          headers: {
+            "X-CSRFToken": csrftoken2,
+          },
+          body: formData,
+        }
+      );
     } catch (err) {
       console.log(err);
     }

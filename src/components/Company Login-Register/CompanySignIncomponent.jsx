@@ -1,16 +1,18 @@
 import React from "react";
 import getCookie from "./CSRF";
+import { useNavigate } from "react-router-dom";
 
 function CompanySignIncomponent() {
+  const navigate = useNavigate();
   const [state, setState] = React.useState({
     email: "",
-    password: ""
+    password: "",
   });
-  const handleChange = evt => {
+  const handleChange = (evt) => {
     const value = evt.target.value;
     setState({
       ...state,
-      [evt.target.name]: value
+      [evt.target.name]: value,
     });
   };
 
@@ -35,6 +37,7 @@ function CompanySignIncomponent() {
 
       const data = await response.json();
       console.log(data);
+      navigate("/");
     } catch (err) {
       console.error(err);
     }
@@ -49,25 +52,31 @@ function CompanySignIncomponent() {
 
   return (
     <div className="form-container sign-in-container">
-      <form className='frm' onSubmit={handleOnSubmit}>
-        <h1 className='heading1'>Company Sign in</h1>
-        <input id='inpt'
+      <form className="frm" onSubmit={handleOnSubmit}>
+        <h1 className="heading1">Company Sign in</h1>
+        <input
+          id="inpt"
           type="email"
           placeholder="Email"
           name="email"
           value={state.email}
           onChange={handleChange}
-          style={{borderRadius:'10px'}}
+          style={{ borderRadius: "10px" }}
         />
-        <input id='inpt'
+        <input
+          id="inpt"
           type="password"
           name="password"
           placeholder="Password"
           value={state.password}
           onChange={handleChange}
         />
-        <a className='alink' href="#">Forgot your password?</a>
-        <button id='bttn' style={{boxShadow:'1px 2px 10px 1px #222'}}>Sign In</button>
+        <a className="alink" href="#">
+          Forgot your password?
+        </a>
+        <button id="bttn" style={{ boxShadow: "1px 2px 10px 1px #222" }}>
+          Sign In
+        </button>
       </form>
     </div>
   );
