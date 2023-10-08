@@ -21,6 +21,7 @@ function RailwaySignIncomponent() {
 
     const { email, password } = state;
     alert(`You are login with email: ${email} and password: ${password}`);
+    window.location.href = 'src\\components\\Dashboard\\railwayDashboard.html';
 
     const csrftoken = getCookie("csrftoken");
 

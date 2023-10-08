@@ -1,0 +1,339 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+.companyDashboard{
+  margin: 0 0 ;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+
+.stock-cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+
+.stock-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  margin: 0 10px;
+  flex-basis: calc(20% - 20px); /* Distribute cards evenly */
+}
+
+/* Style each category differently */
+.stock-card.total {
+  background-color: #765827; /* Blue for Total Stock */
+}
+
+.stock-card.out-of-stock {
+  background-color: #765827; /* Red for Out of Stock */
+}
+
+.stock-card.low-stock {
+  background-color: #765827; /* Orange for Low Stock */
+}
+
+.stock-card.schedule {
+  background-color: #765827; /* Dark Red for Zero Stock */
+}
+
+.stock-card.max-stock {
+  background-color: #765827; /* Green for Max Stock */
+}
+
+/* Update text color for better contrast */
+.stock-card h2, .stock-card p {
+  color: #fff;
+}
+
+/* Style table */
+.order-list {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th, table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+table th {
+  background-color: #333;
+  color: #fff;
+}
+
+table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Style table rows based on order status */
+table td.Processing {
+  background-color: #d64040; /* Yellow for Processing */
+}
+
+table td.Delivered {
+  background-color: #8eeb8e; /* Green for Delivered */
+}
+
+/* Add hover effect to table rows */
+table tr:hover {
+  background-color: #e0e0e0;
+}
+
+/* Style the "Update Stock" button */
+#update-stock-button {
+  background-color: #0c1a0c; /* Green background color */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+#update-stock-button:hover {
+  background-color: #eaf1ea; /* Darker green on hover */
+  color: rgb(0, 0, 0);
+}
+
+/* Style table rows based on order status */
+table tr .status.Delivered {
+  background-color: #8eeb8e; /* Green for Delivered */
+}
+
+table tr .status.Processing {
+  background-color: #ffec8b; /* Yellow for Processing */
+}
+
+/* Add this to your CSS file */
+/* Add this to your CSS file */
+#popupBG {
+  display: none; /* Set the initial display to none */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+#update-stock-form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 80%;
+  max-width: 400px;
+  position: relative;
+  z-index: 1001; /* Ensure the form is above the semi-transparent background */
+  margin-top: 5%;
+  margin-left: 35%
+}
+
+#update-stock-form h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+#update-stock-form p {
+  margin-bottom: 10px;
+}
+
+#update-stock-form input[type="number"] {
+  width: 95%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+#update-stock-form button {
+  background-color: #007bff; /* Blue background color */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 10px;
+}
+
+#update-stock-form button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/*FOOTER*/
+.main-footer {
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #333;
+  flex-wrap: wrap; /* Added to make it responsive */
+}
+
+.main-footer ul {
+  list-style: none;
+}
+
+.main-footer h1 {
+  font-size: 22px;
+  line-height: 117%;
+  color: #ffffff;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.main-footer h2 {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.main-footer ul li a {
+  color: #ffffffcc;
+  text-decoration: none;
+}
+
+#footerr {
+  background-color: #333;
+  border-top: 1px solid #765827;
+  font-size: 17px;
+  padding: 10px 5px;
+  color: #ffffff;
+  text-align: center;
+}
+
+footer a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.logoinfo p {
+  color: #6EB981;
+  font-size: 17px;
+  margin-top: 5px;
+}
+
+.contact-details {
+  margin-top: 20px;
+}
+
+.contact-details li {
+  list-style: none;
+  margin: 10px 0;
+}
+
+.contact-details li a {
+  text-decoration: none;
+  color: #f1f1f1;
+}
+
+.contact-details .fa {
+  color: #f1f1f1;
+  margin-right: 10px;
+}
+
+.sociallogos {
+  padding: 20px 0;
+  display: flex;
+  justify-content: center; /* Center social logos horizontally */
+}
+
+.sociallogos .logobox a {
+  padding: 0 10px;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 22px;
+}
+
+.com ul li {
+  padding: 5px 0;
+}
+
+.com {
+text-align: center; /* Center the content within .com */
+}
+
+.com h1 {
+font-size: 22px;
+margin-bottom: 10px;
+font-weight: 500;
+}
+
+.aboutList,
+.socialList {
+text-align: left; /* Align the lists to the left within .com */
+}
+
+.aboutList ul,
+.socialList ul {
+list-style: none;
+padding: 0;
+}
+
+.aboutList ul li,
+.socialList ul li {
+margin-bottom: 10px;
+}
+
+.aboutList ul li a,
+.socialList ul li a {
+text-decoration: none;
+color: #ffffffcc;
+}
+
+/* Center the content in .com on small screens */
+@media (max-width: 480px) {
+.com {
+    text-align: center;
+}
+
+.aboutList,
+.socialList {
+    text-align: center;
+}
+}
+
+@media only screen and (max-width: 749px) {
+  .main-footer {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      text-align: center; /* Center align text in columns */
+  }
+
+  .info {
+      padding: 20px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-footer {
+      grid-template-columns: 1fr;
+  }
+
+  .sociallogos {
+      padding: 20px 0;
+  }
+
+  .com {
+      padding: 20px 0;
+  }
+}

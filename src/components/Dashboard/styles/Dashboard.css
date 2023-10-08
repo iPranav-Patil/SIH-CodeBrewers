@@ -1,0 +1,30 @@
+#box-dashboard {
+  width: 1240px;
+  margin: 1rem;
+  /* background-color: red; */
+}
+
+#dashboard-body {
+  background-color: #ecf9ff;
+
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+span form {
+  display: inline-block;
+}
+
+span form input {
+  width: 80px;
+}
+
+@media (max-width: 576px) {
+  #box-dashboard h5 {
+    font-size: 1rem;
+  }
+
+  #box-dashboard p {
+    font-size: 0.8rem;
+  }
+}
